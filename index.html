@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>마음카드 · 링크 하나로 보내는 인터랙티브 카드</title>
+<meta name="description" content="설치도 가입도 없이, 3분이면 완성. 탭하면 열리는 인터랙티브 카드를 만들어 카카오톡으로 보내보세요.">
+<meta name="theme-color" content="#f8f6f2">
+<meta property="og:type" content="website">
+<meta property="og:title" content="마음카드 — 링크 하나로 보내는 인터랙티브 카드">
+<meta property="og:description" content="선물상자, 편지봉투, 케이크… 탭하면 열리는 카드를 만들어 링크로 보내세요.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎁%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/themes.css">
+<link rel="stylesheet" href="assets/css/card.css">
+<link rel="stylesheet" href="assets/css/maker.css">
+</head>
+<body>
+
+<!-- 카드 만들기 화면 -->
+<div id="maker">
+<div class="aura"><i></i><i></i><i></i></div>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><span class="dot">🎁</span> 마음카드</div>
+    <button class="btn btn-ghost" id="jumpMake">만들기</button>
+  </div>
+</header>
+
+<section class="hero wrap">
+  <span class="pill">✨ 가입 없음 · 설치 없음 · 무료</span>
+  <h1>링크 하나로<br><em>마음</em>을 열어보세요</h1>
+  <p>선물상자를 톡 누르면 열리고, 촛불을 끄면 폭죽이 터집니다.
+     3분이면 완성해서 카카오톡에 붙여넣기만 하면 끝.</p>
+  <div class="hero-cta">
+    <button class="btn btn-primary" id="startBtn">카드 만들기 시작</button>
+    <a class="btn btn-line" id="demoBtn" href="#" target="_blank" rel="noopener">샘플 카드 보기</a>
+  </div>
+  <div class="steps3">
+    <div><b>1. 고르기</b><span>템플릿과 색을 선택</span></div>
+    <div><b>2. 채우기</b><span>메시지·사진·음악 추가</span></div>
+    <div><b>3. 보내기</b><span>링크 복사해서 붙여넣기</span></div>
+  </div>
+</section>
+
+<main class="wrap studio" id="studio">
+  <div class="form-col">
+
+    <section class="panel">
+      <h2><i>1</i> 어떻게 열리게 할까요?</h2>
+      <p class="sub">받는 사람이 화면을 탭하면 이 연출이 재생됩니다.</p>
+      <div class="tpl-grid" id="tplGrid"></div>
+    </section>
+
+    <section class="panel">
+      <h2><i>2</i> 분위기 고르기</h2>
+      <p class="sub">배경과 포인트 색이 함께 바뀝니다.</p>
+      <div class="theme-row" id="themeRow"></div>
+    </section>
+
+    <section class="panel">
+      <h2><i>3</i> 마음 적기</h2>
+      <p class="sub">비워두면 기본 문구가 들어갑니다.</p>
+      <div class="field">
+        <label for="fTo">받는 사람 <span class="hint">카드 표지에 크게 보여요</span></label>
+        <input class="input" id="fTo" maxlength="20" placeholder="예) 지훈아">
+      </div>
+      <div class="field">
+        <label for="fTitle">한 줄 제목</label>
+        <input class="input" id="fTitle" maxlength="40" placeholder="예) 생일 진심으로 축하해!">
+      </div>
+      <div class="field">
+        <label for="fMsg">메시지</label>
+        <textarea class="textarea" id="fMsg" maxlength="900"
+          placeholder="하고 싶은 말을 편하게 적어주세요."></textarea>
+        <div class="counter"><span id="msgCount">0</span> / 900</div>
+      </div>
+      <div class="field">
+        <label for="fFrom">보내는 사람</label>
+        <input class="input" id="fFrom" maxlength="20" placeholder="예) 종훈">
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2><i>4</i> 사진과 음악</h2>
+      <p class="sub">사진은 링크 안에 담기기 때문에 자동으로 작게 압축합니다.</p>
+      <div class="field">
+        <label>사진 <span class="hint">선택</span></label>
+        <label class="drop" id="dropZone" for="fImg">
+          <div class="big">🖼️</div>
+          <b>사진 한 장 올리기</b>
+          <span>탭해서 앨범에서 선택 (JPG·PNG)</span>
+        </label>
+        <input type="file" id="fImg" accept="image/*" class="sr">
+        <div class="thumb" id="thumb"><img id="thumbImg" alt="선택한 사진 미리보기"><button type="button" id="removeImg">삭제</button></div>
+      </div>
+      <div class="field">
+        <label>배경 음악 <span class="hint">받는 사람이 카드를 열면 재생됩니다</span></label>
+        <div class="chips" id="bgmRow"></div>
+      </div>
+    </section>
+  </div>
+
+  <aside class="preview-col">
+    <div class="preview-head">
+      <h3>실시간 미리보기</h3>
+      <button type="button" id="reloadPrev">↻ 새로고침</button>
+    </div>
+    <div class="phone"><iframe id="preview" title="카드 미리보기"></iframe></div>
+    <p class="preview-note">미리보기 안에서 직접 열어볼 수 있어요.<br>소리는 실제 카드에서 재생됩니다.</p>
+  </aside>
+</main>
+
+<footer class="site wrap">
+  서버에 아무것도 저장하지 않습니다 · 카드 내용은 링크 안에만 담깁니다<br>
+  <a href="https://github.com/limjhily/WebToy" target="_blank" rel="noopener">GitHub</a>
+</footer>
+
+<div class="dock">
+  <div class="wrap">
+    <div class="meta">모든 내용은 링크에 담겨요.<br>서버 저장 없이 바로 공유됩니다.</div>
+    <button class="btn btn-primary" id="makeLink">🔗 공유 링크 만들기</button>
+  </div>
+</div>
+
+<div class="sheet-bg" id="sheetBg"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+  <div class="grab"></div>
+  <h2 id="sheetTitle">카드가 완성됐어요 🎉</h2>
+  <p class="lead">아래 링크를 복사해서 카카오톡·문자·인스타 DM에 붙여넣으세요.</p>
+  <div class="linkbox"><input id="linkOut" readonly></div>
+  <div class="sheet-actions">
+    <button class="btn btn-primary btn-block" id="copyBtn">링크 복사하기</button>
+    <div class="row">
+      <button class="btn btn-line" id="shareBtn">공유</button>
+      <a class="btn btn-line" id="openBtn" target="_blank" rel="noopener">새 탭에서 열기</a>
+    </div>
+    <button class="btn btn-ghost btn-block" id="closeSheet">계속 편집하기</button>
+  </div>
+  <p class="warn" id="lenWarn" hidden></p>
+</div>
+
+<div class="toast" id="toast"></div>
+</div>
+
+<!-- 받은 카드 보기 화면 (#c=... 로 접속하면 이쪽이 열립니다) -->
+<div id="cardApp" hidden>
+<button class="sound" id="sound" hidden aria-label="배경음악 켜기/끄기">🔈</button>
+
+<main class="stage" id="stage">
+  <!-- 커버 (열기 전) -->
+  <section class="cover" id="cover" hidden>
+    <p class="cover-to" id="coverTo"></p>
+    <div class="scene" id="scene" role="button" tabindex="0" aria-label="카드 열기"></div>
+    <p class="cover-hint" id="coverHint"><span>👆</span><span id="hintText">탭해서 열어보세요</span></p>
+  </section>
+
+  <!-- 편지 (열린 후) -->
+  <section class="letter" id="letter" hidden>
+    <article class="letter-card">
+      <p class="l-eyebrow" id="lTo"></p>
+      <h1 class="l-title" id="lTitle"></h1>
+      <figure class="l-photo" id="lPhoto" hidden><img id="lImg" alt=""></figure>
+      <p class="l-msg" id="lMsg"></p>
+      <p class="l-from" id="lFrom" hidden><span>From.</span><b id="lFromName"></b></p>
+    </article>
+    <div class="cta">
+      <p>마음에 드셨나요?</p>
+      <a class="btn" href="index.html">✨ 나도 카드 만들기</a>
+    </div>
+  </section>
+
+  <!-- 링크가 잘못된 경우 -->
+  <section class="oops" id="oops" hidden>
+    <div style="font-size:48px">🧐</div>
+    <h1>카드를 열 수 없어요</h1>
+    <p>링크가 잘리거나 손상된 것 같아요.<br>보낸 사람에게 링크를 다시 받아보세요.</p>
+    <a class="btn btn-primary" href="index.html">내 카드 만들러 가기</a>
+  </section>
+</main>
+</div>
+
+<script src="assets/js/codec.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/audio.js"></script>
+<script src="assets/js/confetti.js"></script>
+<script src="assets/js/scenes.js"></script>
+<script src="assets/js/card.js"></script>
+<script src="assets/js/maker.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

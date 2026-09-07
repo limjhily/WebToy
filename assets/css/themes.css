@@ -1,0 +1,47 @@
+/* ─────────────────────────────────────────────
+   카드 테마 팔레트 — [data-theme] 로 적용
+   ───────────────────────────────────────────── */
+[data-theme]{
+  --t-bg1:#fceef2; --t-bg2:#fff8f0; --t-bg3:#f6e2ee;
+  --t-ink:#2a1f28;  --t-ink-soft:#7a6a76;
+  --t-accent:#e2557a; --t-accent-2:#ffd0dd;
+  --t-paper:#fffdfa;
+  --t-glow:rgba(226,85,122,.35);
+  --t-sparkle:#ffd9a8;
+}
+[data-theme="rose"]{
+  --t-bg1:#fbe7ee; --t-bg2:#fff7f2; --t-bg3:#f3dcea;
+  --t-ink:#2c1d26; --t-ink-soft:#806b78;
+  --t-accent:#e2557a; --t-accent-2:#ffd2df;
+  --t-paper:#fffdfb; --t-glow:rgba(226,85,122,.34); --t-sparkle:#ffcfa3;
+}
+[data-theme="mint"]{
+  --t-bg1:#e2f2ee; --t-bg2:#f6fbf8; --t-bg3:#dcebf3;
+  --t-ink:#12262a; --t-ink-soft:#5f7d80;
+  --t-accent:#159c86; --t-accent-2:#bdeade;
+  --t-paper:#fbfefd; --t-glow:rgba(21,156,134,.3); --t-sparkle:#a8e6d4;
+}
+[data-theme="night"]{
+  --t-bg1:#171a33; --t-bg2:#0d0f20; --t-bg3:#241d3d;
+  --t-ink:#f3f0ff; --t-ink-soft:#a49dc4;
+  --t-accent:#8f7bff; --t-accent-2:#3a3266;
+  --t-paper:#1d2040; --t-glow:rgba(143,123,255,.45); --t-sparkle:#ffe9a8;
+}
+[data-theme="sunset"]{
+  --t-bg1:#fde3d0; --t-bg2:#fff6ec; --t-bg3:#f9d3d0;
+  --t-ink:#33201a; --t-ink-soft:#8a6a5c;
+  --t-accent:#f0722c; --t-accent-2:#ffd7b8;
+  --t-paper:#fffcf7; --t-glow:rgba(240,114,44,.34); --t-sparkle:#ffd08a;
+}
+[data-theme="forest"]{
+  --t-bg1:#e6eddc; --t-bg2:#f8faf2; --t-bg3:#d9e6dd;
+  --t-ink:#1d2a1c; --t-ink-soft:#63735f;
+  --t-accent:#4b7f3c; --t-accent-2:#cfe3bd;
+  --t-paper:#fcfdf8; --t-glow:rgba(75,127,60,.3); --t-sparkle:#e8d79a;
+}
+[data-theme="mono"]{
+  --t-bg1:#ecebe8; --t-bg2:#fafaf8; --t-bg3:#e0dfdb;
+  --t-ink:#1a1a1a; --t-ink-soft:#6e6e6e;
+  --t-accent:#1a1a1a; --t-accent-2:#dedcd6;
+  --t-paper:#ffffff; --t-glow:rgba(0,0,0,.22); --t-sparkle:#c9c4b6;
+}
