@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>OG 썸네일 원본</title>
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/themes.css">
+<link rel="stylesheet" href="../assets/css/card.css">
+<style>
+  /* 1200×630 — 카카오톡·인스타·트위터 링크 미리보기 표준 크기 */
+  html,body{margin:0;background:#fff}
+  .og{position:relative;width:1200px;height:630px;overflow:hidden;
+      background:linear-gradient(150deg,#fff4f7 0%,#fffaf4 46%,#f7e7f1 100%);
+      display:grid;grid-template-columns:1fr 470px;align-items:center}
+  .og .blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55}
+  .og .b1{width:640px;height:640px;background:#ffb3c8;top:-260px;left:-160px}
+  .og .b2{width:560px;height:560px;background:#ffd9a8;bottom:-260px;left:380px}
+  .og .b3{width:520px;height:520px;background:#d9c6ff;top:-160px;right:-140px}
+
+  .copy{position:relative;z-index:2;padding:0 0 0 88px}
+  .mark{display:inline-flex;align-items:center;gap:12px;margin-bottom:30px}
+  .mark .dot{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;font-size:24px;
+    background:linear-gradient(150deg,#ff8fab,#e2557a);box-shadow:0 6px 18px rgba(226,85,122,.42)}
+  .mark b{font-size:25px;font-weight:750;letter-spacing:-.03em;color:#2a1f28}
+  .copy h1{margin:0 0 22px;font-size:82px;line-height:1.12;font-weight:800;
+    letter-spacing:-.05em;color:#231a22}
+  .copy h1 em{font-style:normal;
+    background:linear-gradient(100deg,#e2557a,#f0722c 62%,#8f7bff);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .copy p{margin:0;font-size:30px;line-height:1.55;color:#6f6070;font-weight:500}
+  .tags{display:flex;gap:12px;margin-top:38px}
+  .tags span{padding:11px 22px;border-radius:999px;font-size:22px;font-weight:650;color:#5d4f5b;
+    background:rgba(255,255,255,.78);border:1.5px solid rgba(40,25,35,.09)}
+
+  /* 카드 뷰어의 선물상자 연출을 그대로 재사용 */
+  .art{position:relative;z-index:2;height:100%;display:grid;place-items:center}
+  .art .scene{width:336px;transform:rotate(-6deg) translateX(-18px)}
+  .art .scene::after{opacity:.55}
+  .art .scene .gift{animation:none;transform:none}
+  .dots{position:absolute;inset:0;z-index:1}
+  .dots i{position:absolute;border-radius:2px}
+</style>
+</head>
+<body>
+<div class="og" data-theme="rose">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <div class="dots" id="dots"></div>
+
+  <div class="copy">
+    <span class="mark"><span class="dot">🎁</span><b>마음카드</b></span>
+    <h1>도착한 카드가<br><em>있어요</em></h1>
+    <p>탭하면 상자가 열립니다.<br>링크 하나로 전하는 마음.</p>
+    <div class="tags"><span>가입 없음</span><span>설치 없음</span><span>3분 완성</span></div>
+  </div>
+
+  <div class="art"><div class="scene" id="scene"></div></div>
+</div>
+
+<script src="../assets/js/scenes.js"></script>
+<script>
+  // 선물상자 마크업을 카드 뷰어와 동일하게 그린다
+  document.getElementById('scene').innerHTML = window.Scenes.MARKUP.giftbox;
+  document.getElementById('scene').dataset.tpl = 'giftbox';
+
+  // 배경 색종이 (매번 같은 그림이 나오도록 고정 난수)
+  let seed = 20260907;
+  const rnd = () => (seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648;
+  const colors = ['#e2557a', '#ffc46b', '#8f7bff', '#ffffff', '#ff9ab5'];
+  let html = '';
+  for (let i = 0; i < 46; i++) {
+    const w = 8 + rnd() * 12, h = 8 + rnd() * 14;
+    html += `<i style="left:${(rnd() * 100).toFixed(1)}%;top:${(rnd() * 100).toFixed(1)}%;
+      width:${w.toFixed(0)}px;height:${h.toFixed(0)}px;
+      background:${colors[(rnd() * colors.length) | 0]};
+      opacity:${(0.25 + rnd() * 0.5).toFixed(2)};
+      transform:rotate(${(rnd() * 360).toFixed(0)}deg)"></i>`;
+  }
+  document.getElementById('dots').innerHTML = html;
+</script>
+</body>
+</html>
