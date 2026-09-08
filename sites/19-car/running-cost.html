@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>자동차 1년 유지비 계산기 — 세금·보험·기름값·정비 통합 | 카택스</title>
+<meta name="description" content="자동차세, 보험료, 연료비, 정비비를 한 번에 계산해 연간 유지비와 1km당 비용을 보여줍니다. 전기차 비교 가능.">
+<link rel="canonical" href="https://YOUR-DOMAIN.com/running-cost.html">
+<meta property="og:title" content="자동차 1년 유지비 계산기 — 세금·보험·기름값·정비 통합">
+<meta property="og:description" content="자동차세, 보험료, 연료비, 정비비를 한 번에 계산해 연간 유지비와 1km당 비용을 보여줍니다. 전기차 비교 가능.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="/assets/shared/base.css">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/rates.js"></script><script src="/assets/shared/common.js"></script><script src="/assets/calc.js"></script>
+<!-- 애드센스 승인 후 여기에 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX"></script> 삽입 -->
+
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="logo" href="/">카<span>택스</span></a><nav class="main"><a href="/tax.html">자동차세</a><a href="/acquisition.html">취득세</a><a href="/fuel.html">유류비</a><a href="/loan.html">할부</a><a href="/running-cost.html">유지비</a><a href="/depreciation.html">감가</a></nav></div></header>
+<main><div class="wrap">
+<h1>자동차 1년 유지비 통합 계산기</h1>
+<p class="lead">세금·보험·기름값·정비비를 한 번에 넣으면 이 차를 1년 굴리는 데 드는 실제 비용이 나옵니다. 다른 계산기에는 없는 기능입니다.</p>
+<div class="card"><form class="calc" id="f" onsubmit="return false">
+<h3 style="margin-top:0">차량 정보</h3>
+<div class="row">
+<div class="field"><label>연료 종류</label><select name="fuel" id="fuel"><option value="gasoline">휘발유</option><option value="diesel">경유</option><option value="lpg">LPG</option><option value="ev">전기</option></select></div>
+<div class="field" id="ccWrap"><label>배기량 <small>(cc)</small></label><input name="cc" id="cc" data-comma value="1,999"></div>
+</div>
+<div class="row">
+<div class="field"><label>차령 <small>(년)</small></label><input name="age" id="age" type="number" min="1" max="30" value="3"></div>
+<div class="field"><label>연 주행거리 <small>(km)</small></label><input name="km" id="km" data-comma value="14,000"></div>
+</div>
+<div class="row">
+<div class="field"><label>연비 <small id="effUnit">(km/L)</small></label><input name="eff" id="eff" type="number" step="0.1" value="12"></div>
+<div class="field"><label>연료 단가 <small id="priceUnit">(원/L)</small></label><input name="price" id="price" data-comma value="1,700"></div>
+</div>
+<h3>연간 고정비</h3>
+<div class="row">
+<div class="field"><label>자동차보험료 <small>(1년)</small></label><input name="ins" id="ins" data-comma value="800,000"></div>
+<div class="field"><label>정비·소모품 <small>(엔진오일·타이어 등)</small></label><input name="maint" id="maint" data-comma value="500,000"></div>
+</div>
+<div class="row">
+<div class="field"><label>주차비 <small>(1년)</small></label><input name="park" id="park" data-comma value="0"></div>
+<div class="field"><label>기타 <small>(통행료·세차 등)</small></label><input name="etc" id="etc" data-comma value="300,000"></div>
+</div>
+<div class="inline"><button class="btn" id="go">계산하기</button><button class="btn ghost" type="button" onclick="shareLink()">결과 링크 복사</button></div>
+</form>
+<div class="result" id="res" hidden>
+<div>연간 유지비 <span class="big" id="out"></span></div>
+<div class="tbl-wrap"><table><thead><tr><th>항목</th><th class="num">연간</th><th class="num">월 환산</th><th class="num">비중</th></tr></thead><tbody id="tb"></tbody></table></div>
+<div class="card" style="margin-top:14px;background:#f3f6ff"><b id="perKm"></b><p class="note" style="margin-top:4px">감가상각(차값이 떨어지는 손실)은 포함하지 않았습니다. 실제 소유 비용을 알고 싶다면 <a href="/depreciation.html">중고차 감가 계산기</a>의 연평균 감가액을 더하세요.</p></div>
+</div></div>
+<div class="ad-slot">광고 영역 (승인 후 삽입)</div>
+<section class="card prose">
+<h2>자동차 유지비에는 뭐가 들어가나요?</h2>
+<p>많은 사람이 기름값만 생각하지만, 실제로는 고정비가 절반 가까이 차지합니다. 항목을 나눠 보면 이렇습니다.</p>
+<ul>
+<li><b>자동차세</b>: 배기량과 차령으로 정해집니다. 2,000cc 3년차라면 약 49만 원.</li>
+<li><b>자동차보험</b>: 나이, 사고 이력, 특약에 따라 편차가 큽니다. 30대 무사고 기준 연 70~100만 원선.</li>
+<li><b>연료비</b>: 주행거리에 비례하는 유일한 큰 항목입니다.</li>
+<li><b>정비·소모품</b>: 엔진오일(연 2회), 타이어(3~5년마다 4짝), 브레이크 패드, 배터리. 연 40~80만 원 정도로 잡습니다.</li>
+<li><b>기타</b>: 통행료, 세차, 주차, 과태료.</li>
+</ul>
+<h2>전기차는 정말 싼가요?</h2>
+<p>유지비만 보면 확실히 쌉니다. 자동차세가 13만 원 정액이고, 연료비는 같은 거리를 기준으로 휘발유차의 1/3 수준입니다. 엔진오일 교환도 없습니다. 다만 차값이 비싸 감가상각 손실이 크고, 보험료도 수리비가 비싸 다소 높게 책정됩니다. 위 계산기에 두 차의 조건을 각각 넣어 링크를 저장해 두면 나란히 비교할 수 있습니다.</p>
+<h2>1km당 비용으로 보면 달라집니다</h2>
+<p>연간 유지비를 주행거리로 나눈 <b>km당 비용</b>이 진짜 비교 지표입니다. 연 5,000km만 타는 사람에게는 고정비 비중이 커서 km당 비용이 400원을 넘기도 하고, 연 3만 km를 타는 사람은 150원대로 떨어집니다. 주행거리가 적다면 차를 소유하는 것보다 택시나 카셰어링이 저렴할 수 있습니다.</p>
+</section>
+<script>
+(function(){const f=document.getElementById('f');loadState(f);
+const ev=()=>f.fuel.value==='ev';
+function sync(){document.getElementById('ccWrap').style.display=ev()?'none':'';document.getElementById('effUnit').textContent=ev()?'(km/kWh)':'(km/L)';document.getElementById('priceUnit').textContent=ev()?'(원/kWh)':'(원/L)';}
+f.fuel.onchange=()=>{sync();f.price.value=RATES.fuelPrice[f.fuel.value].toLocaleString('ko-KR');if(ev()&&Number(f.eff.value)>10)f.eff.value=5.5;run();};sync();
+function run(){const km=num(f.km),eff=Number(f.eff.value)||1;
+const tax=carTax(num(f.cc),Number(f.age.value)||1,ev()).total;
+const fuel=fuelCost(km/12,eff,num(f.price)).yearly;
+const items=[['자동차세',tax],['자동차보험',num(f.ins)],['연료비',fuel],['정비·소모품',num(f.maint)],['주차비',num(f.park)],['기타',num(f.etc)]];
+const total=items.reduce((a,b)=>a+b[1],0);
+document.getElementById('out').textContent=won(total);
+document.getElementById('tb').innerHTML=items.map(([k,v])=>`<tr><td>${k}</td><td class="num">${fmt(v)}</td><td class="num">${fmt(v/12)}</td><td class="num">${total?(v/total*100).toFixed(0):0}%</td></tr>`).join('')+`<tr class="total"><td>합계</td><td class="num">${fmt(total)}</td><td class="num">${fmt(total/12)}</td><td class="num">100%</td></tr>`;
+document.getElementById('perKm').textContent=km?`1km당 ${fmt(total/km)}원 · 월 평균 ${won(total/12)}`:'';
+document.getElementById('res').hidden=false;saveState(f);}
+document.getElementById('go').onclick=run;f.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();run();}});run();})();
+</script>
+</div></main>
+<footer><div class="wrap"><div style="margin-bottom:8px"><a href="/tax.html">자동차세</a><a href="/acquisition.html">취득세</a><a href="/fuel.html">유류비</a><a href="/loan.html">할부 이자</a><a href="/running-cost.html">유지비</a><a href="/depreciation.html">중고차 감가</a></div><div><a href="/about.html">소개</a><a href="/privacy.html">개인정보처리방침</a><a href="/contact.html">문의</a></div><div style="margin-top:8px">© 2026 카택스. 모든 계산 결과는 참고용 추정치이며, 실제 세액은 지방자치단체의 부과 기준에 따라 달라질 수 있습니다.</div></div></footer>
+</body>
+</html>

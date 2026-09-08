@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>자동차 취득세 계산기 2026 — 승용 7%·경차·전기차 감면 반영 | 카택스</title>
+<meta name="description" content="차량 가격으로 자동차 취득세를 계산합니다. 부가세 제외 과세표준, 경차 75만 원·전기차 140만 원 감면 자동 적용.">
+<link rel="canonical" href="https://YOUR-DOMAIN.com/acquisition.html">
+<meta property="og:title" content="자동차 취득세 계산기 2026 — 승용 7%·경차·전기차 감면 반영">
+<meta property="og:description" content="차량 가격으로 자동차 취득세를 계산합니다. 부가세 제외 과세표준, 경차 75만 원·전기차 140만 원 감면 자동 적용.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="/assets/shared/base.css">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/rates.js"></script><script src="/assets/shared/common.js"></script><script src="/assets/calc.js"></script>
+<!-- 애드센스 승인 후 여기에 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX"></script> 삽입 -->
+
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="logo" href="/">카<span>택스</span></a><nav class="main"><a href="/tax.html">자동차세</a><a href="/acquisition.html">취득세</a><a href="/fuel.html">유류비</a><a href="/loan.html">할부</a><a href="/running-cost.html">유지비</a><a href="/depreciation.html">감가</a></nav></div></header>
+<main><div class="wrap">
+<h1>자동차 취득세 계산기 (2026)</h1>
+<p class="lead">차량 가격과 종류를 넣으면 취득세(지방교육세 포함)를 계산합니다. 경차·전기차 감면도 반영합니다.</p>
+<div class="card"><form class="calc" id="f" onsubmit="return false">
+<div class="row">
+<div class="field"><label>차량 가격 <small>(원)</small></label><input name="price" id="price" data-comma placeholder="예: 35,000,000"></div>
+<div class="field"><label>차량 종류</label><select name="type" id="type"><option value="car">비영업용 승용차 (7%)</option><option value="light">경차 1,000cc 이하 (4%, 75만 원 감면)</option><option value="ev">전기·수소차 (7%, 140만 원 감면)</option><option value="vanTruck">승합·화물차 (5%)</option><option value="business">영업용 (4%)</option></select></div>
+</div>
+<div class="field"><label class="inline" style="font-weight:700"><input type="checkbox" name="vat" id="vat" checked style="width:auto;flex:0"> 입력한 금액에 부가가치세가 포함되어 있음</label><small>취득세 과세표준은 부가세를 뺀 금액입니다. 신차 판매가는 보통 부가세 포함 가격입니다.</small></div>
+<div class="inline"><button class="btn" id="go">계산하기</button><button class="btn ghost" type="button" onclick="shareLink()">결과 링크 복사</button></div>
+</form>
+<div class="result" id="res" hidden>
+<div>납부할 취득세 <span class="big" id="out"></span></div>
+<div class="tbl-wrap"><table><tbody id="tb"></tbody></table></div>
+<p class="note">중고차는 취득가액과 시가표준액 중 큰 금액이 과세표준이 됩니다. 지자체 확인이 필요합니다.</p>
+</div></div>
+<div class="ad-slot">광고 영역 (승인 후 삽입)</div>
+<section class="card prose">
+<h2>취득세율과 감면</h2>
+<div class="tbl-wrap"><table><thead><tr><th>구분</th><th class="num">세율</th><th>감면</th></tr></thead><tbody>
+<tr><td>비영업용 승용차</td><td class="num">7%</td><td>없음</td></tr>
+<tr><td>경차 (1,000cc 이하)</td><td class="num">4%</td><td>75만 원 한도 감면 (대부분 전액 면제)</td></tr>
+<tr><td>전기·수소차</td><td class="num">7%</td><td>140만 원 한도 감면 (2026.12.31까지)</td></tr>
+<tr><td>승합·화물차 (비영업용)</td><td class="num">5%</td><td>없음</td></tr>
+<tr><td>영업용</td><td class="num">4%</td><td>없음</td></tr>
+</tbody></table></div>
+<p>승용차 7%는 취득세 6%와 지방교육세 1%를 합한 값입니다. 과세표준은 <b>부가가치세를 뺀 취득가액</b>이므로, 3,850만 원(부가세 포함)짜리 차라면 3,500만 원이 기준이 되어 취득세는 245만 원입니다. 전기차는 여기서 140만 원을 빼 105만 원만 냅니다.</p>
+<p>경차는 세율이 4%이고 75만 원까지 감면되므로, 차값 1,875만 원(부가세 제외)까지는 취득세가 0원입니다. 대부분의 경차가 여기에 해당합니다.</p>
+<h2>취득세 외에 드는 돈</h2>
+<p>신차를 살 때는 취득세 외에 공채(도시철도채권·지역개발채권) 매입비가 듭니다. 지역과 배기량에 따라 다르며, 즉시 할인 매도하면 실부담은 차값의 0.5~2% 수준입니다. 이 밖에 등록 대행 수수료, 번호판 비용, 자동차보험료가 추가됩니다.</p>
+<h2>자주 묻는 질문</h2>
+<div class="faq">
+<details><summary>언제까지 내야 하나요?</summary><p>차량 취득일로부터 60일 이내에 신고·납부해야 합니다. 보통 신차는 딜러가, 중고차는 이전 대행업체가 대신 처리합니다. 기한을 넘기면 신고불성실 가산세 20%와 납부지연 가산세가 붙습니다.</p></details>
+<details><summary>중고차도 취득세를 내나요?</summary><p>냅니다. 세율은 신차와 같지만 과세표준이 실제 취득가액과 지자체가 정한 시가표준액 중 큰 금액입니다. 지나치게 낮은 가격으로 신고하면 시가표준액으로 과세됩니다.</p></details>
+<details><summary>장애인·국가유공자 감면은?</summary><p>본인 또는 세대원 명의로 2,000cc 이하 승용차 1대에 대해 취득세가 전액 면제됩니다. 조건과 신청 방법은 관할 차량등록사업소에 확인하세요.</p></details>
+<details><summary>전기차 감면은 계속되나요?</summary><p>현재 규정으로는 2026년 12월 31일 취득분까지입니다. 이후 연장 여부는 세법 개정에 따라 달라지므로 구매 시점에 다시 확인해야 합니다.</p></details>
+</div>
+</section>
+<script>
+(function(){const f=document.getElementById('f');loadState(f);
+function run(){const p=num(f.price);if(!p)return;const r=acqTax(p,f.type.value,f.vat.checked);
+document.getElementById('out').textContent=won(r.total);
+document.getElementById('tb').innerHTML=`<tr><td>입력 금액</td><td class="num">${won(p)}</td></tr><tr><td>과세표준 ${f.vat.checked?'(부가세 제외)':''}</td><td class="num">${won(r.taxBase)}</td></tr><tr><td>세율</td><td class="num">${(r.rate*100).toFixed(0)}%</td></tr><tr><td>산출세액</td><td class="num">${won(r.gross)}</td></tr>${r.exempt?`<tr><td>감면</td><td class="num">-${won(r.exempt)}</td></tr>`:''}<tr class="total"><td>납부액</td><td class="num">${won(r.total)}</td></tr>`;
+document.getElementById('res').hidden=false;saveState(f);}
+document.getElementById('go').onclick=run;f.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();run();}});
+f.type.onchange=run;f.vat.onchange=run;if(num(f.price))run();})();
+</script>
+</div></main>
+<footer><div class="wrap"><div style="margin-bottom:8px"><a href="/tax.html">자동차세</a><a href="/acquisition.html">취득세</a><a href="/fuel.html">유류비</a><a href="/loan.html">할부 이자</a><a href="/running-cost.html">유지비</a><a href="/depreciation.html">중고차 감가</a></div><div><a href="/about.html">소개</a><a href="/privacy.html">개인정보처리방침</a><a href="/contact.html">문의</a></div><div style="margin-top:8px">© 2026 카택스. 모든 계산 결과는 참고용 추정치이며, 실제 세액은 지방자치단체의 부과 기준에 따라 달라질 수 있습니다.</div></div></footer>
+</body>
+</html>

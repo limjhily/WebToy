@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>자동차 할부 이자 계산기 — 월 납입금·총 이자·상환 스케줄 | 카택스</title>
+<meta name="description" content="차량 가격과 금리로 할부 월 납입금과 총 이자를 계산합니다. 기간별 비교표와 회차별 상환 스케줄 제공.">
+<link rel="canonical" href="https://YOUR-DOMAIN.com/loan.html">
+<meta property="og:title" content="자동차 할부 이자 계산기 — 월 납입금·총 이자·상환 스케줄">
+<meta property="og:description" content="차량 가격과 금리로 할부 월 납입금과 총 이자를 계산합니다. 기간별 비교표와 회차별 상환 스케줄 제공.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="/assets/shared/base.css">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/rates.js"></script><script src="/assets/shared/common.js"></script><script src="/assets/calc.js"></script>
+<!-- 애드센스 승인 후 여기에 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX"></script> 삽입 -->
+
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="logo" href="/">카<span>택스</span></a><nav class="main"><a href="/tax.html">자동차세</a><a href="/acquisition.html">취득세</a><a href="/fuel.html">유류비</a><a href="/loan.html">할부</a><a href="/running-cost.html">유지비</a><a href="/depreciation.html">감가</a></nav></div></header>
+<main><div class="wrap">
+<h1>자동차 할부 이자 계산기</h1>
+<p class="lead">차량 가격, 선수금, 금리, 기간을 넣으면 월 납입금과 총 이자, 매달 상환 스케줄을 보여줍니다.</p>
+<div class="card"><form class="calc" id="f" onsubmit="return false">
+<div class="row">
+<div class="field"><label>차량 가격 <small>(원)</small></label><input name="price" id="price" data-comma value="35,000,000"></div>
+<div class="field"><label>선수금 <small>(계약금, 원)</small></label><input name="down" id="down" data-comma value="5,000,000"></div>
+</div>
+<div class="row">
+<div class="field"><label>연 이자율 <small>(%)</small></label><input name="rate" id="rate" type="number" step="0.1" min="0" value="5.9"></div>
+<div class="field"><label>할부 기간 <small>(개월)</small></label><select name="months" id="months"><option>12</option><option>24</option><option selected>36</option><option>48</option><option>60</option><option>72</option></select></div>
+</div>
+<div class="inline"><button class="btn" id="go">계산하기</button><button class="btn ghost" type="button" onclick="shareLink()">결과 링크 복사</button></div>
+</form>
+<div class="result" id="res" hidden>
+<div>월 납입금 <span class="big" id="out"></span></div>
+<div class="tbl-wrap"><table><tbody id="tb"></tbody></table></div>
+<h3>기간별 비교</h3>
+<div class="tbl-wrap"><table id="cmp"><thead><tr><th>기간</th><th class="num">월 납입금</th><th class="num">총 이자</th></tr></thead><tbody></tbody></table></div>
+<h3>상환 스케줄</h3>
+<div class="tbl-wrap" style="max-height:340px;overflow:auto"><table id="sch"><thead><tr><th>회차</th><th class="num">원금</th><th class="num">이자</th><th class="num">잔액</th></tr></thead><tbody></tbody></table></div>
+<p class="note">원리금균등 방식 기준입니다. 실제 할부에는 취급 수수료와 유예 할부(잔가 설정) 조건이 붙을 수 있습니다.</p>
+</div></div>
+<div class="ad-slot">광고 영역 (승인 후 삽입)</div>
+<section class="card prose">
+<h2>원리금균등이란?</h2>
+<p>매달 같은 금액을 갚는 방식입니다. 초반에는 낼 돈의 대부분이 이자로 나가고 원금은 조금씩 줄다가, 후반으로 갈수록 원금 비중이 커집니다. 자동차 할부의 대부분이 이 방식입니다. 계산식은 <b>월납입금 = 원금 × 월이자율 ÷ (1 - (1+월이자율)^-개월수)</b>입니다.</p>
+<h2>할부 기간을 늘리면 손해인 이유</h2>
+<p>기간이 길어지면 월 부담은 줄지만 총 이자는 확실히 늘어납니다. 3,000만 원을 연 5.9%로 빌릴 때 36개월이면 이자가 약 280만 원, 72개월이면 약 570만 원으로 두 배가 됩니다. 위 "기간별 비교" 표에서 본인 조건으로 직접 확인해 보세요.</p>
+<h2>유예 할부(잔가 보장)의 함정</h2>
+<p>차값의 30~40%를 만기에 한 번에 갚는 조건으로 월 납입금을 낮추는 상품입니다. 매달 부담은 가볍지만, 유예된 금액에도 계속 이자가 붙어 총 비용은 일반 할부보다 큽니다. 만기에 목돈이 없으면 재할부를 받아야 하고 그때 금리가 더 높을 수 있습니다.</p>
+<h2>자주 묻는 질문</h2>
+<div class="faq">
+<details><summary>선수금을 많이 넣는 게 유리한가요?</summary><p>이자는 빌린 원금에만 붙으므로 선수금이 클수록 총 이자가 줄어듭니다. 다만 여윳돈을 다른 곳에서 할부 금리보다 높게 굴릴 수 있다면 꼭 그렇지는 않습니다.</p></details>
+<details><summary>중도상환 수수료가 있나요?</summary><p>대부분의 자동차 할부에 있습니다. 보통 남은 원금의 1~2% 수준이며 기간이 지날수록 낮아집니다. 계약서의 중도상환 조건을 확인하세요.</p></details>
+<details><summary>저금리 할부와 현금 할인 중 뭐가 나은가요?</summary><p>제조사가 제시하는 무이자·저금리 조건은 보통 현금 할인과 택일입니다. 이 계산기로 저금리 조건의 총 납입액을 구한 뒤, 현금 할인 후 금액에 일반 금리를 적용한 총액과 비교하면 됩니다.</p></details>
+</div>
+</section>
+<script>
+(function(){const f=document.getElementById('f');loadState(f);
+function run(){const P=num(f.price)-num(f.down),rate=Number(f.rate.value)||0,n=Number(f.months.value);if(P<=0)return;
+const r=loanPayment(P,rate,n);
+document.getElementById('out').textContent=won(r.monthly);
+document.getElementById('tb').innerHTML=`<tr><td>할부 원금</td><td class="num">${won(P)}</td></tr><tr><td>총 이자</td><td class="num">${won(r.interest)}</td></tr><tr><td>총 납입액 (선수금 포함)</td><td class="num">${won(r.total+num(f.down))}</td></tr><tr class="total"><td>이자가 차값에서 차지하는 비율</td><td class="num">${(r.interest/num(f.price)*100).toFixed(1)}%</td></tr>`;
+const cb=document.querySelector('#cmp tbody');cb.innerHTML='';[12,24,36,48,60,72].forEach(m=>{const x=loanPayment(P,rate,m);cb.insertAdjacentHTML('beforeend',`<tr${m===n?' class="total"':''}><td>${m}개월</td><td class="num">${won(x.monthly)}</td><td class="num">${won(x.interest)}</td></tr>`);});
+const mr=rate/100/12;let bal=P,rows='';for(let i=1;i<=n;i++){const int=bal*mr,pri=r.monthly-int;bal-=pri;rows+=`<tr><td>${i}회</td><td class="num">${fmt(pri)}</td><td class="num">${fmt(int)}</td><td class="num">${fmt(Math.max(0,bal))}</td></tr>`;}
+document.querySelector('#sch tbody').innerHTML=rows;
+document.getElementById('res').hidden=false;saveState(f);}
+document.getElementById('go').onclick=run;f.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();run();}});f.months.onchange=run;run();})();
+</script>
+</div></main>
+<footer><div class="wrap"><div style="margin-bottom:8px"><a href="/tax.html">자동차세</a><a href="/acquisition.html">취득세</a><a href="/fuel.html">유류비</a><a href="/loan.html">할부 이자</a><a href="/running-cost.html">유지비</a><a href="/depreciation.html">중고차 감가</a></div><div><a href="/about.html">소개</a><a href="/privacy.html">개인정보처리방침</a><a href="/contact.html">문의</a></div><div style="margin-top:8px">© 2026 카택스. 모든 계산 결과는 참고용 추정치이며, 실제 세액은 지방자치단체의 부과 기준에 따라 달라질 수 있습니다.</div></div></footer>
+</body>
+</html>

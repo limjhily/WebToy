@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>자동차세 계산기 2026 — 배기량·차령·연납 할인 계산 | 카택스</title>
+<meta name="description" content="2026년 세율로 자동차세 연세액과 1월 연납 할인액을 계산합니다. 차령 경감표, 전기차 정액 세금, 연납 신청 안내 포함.">
+<link rel="canonical" href="https://YOUR-DOMAIN.com/tax.html">
+<meta property="og:title" content="자동차세 계산기 2026 — 배기량·차령·연납 할인 계산">
+<meta property="og:description" content="2026년 세율로 자동차세 연세액과 1월 연납 할인액을 계산합니다. 차령 경감표, 전기차 정액 세금, 연납 신청 안내 포함.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="/assets/shared/base.css">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/rates.js"></script><script src="/assets/shared/common.js"></script><script src="/assets/calc.js"></script>
+<!-- 애드센스 승인 후 여기에 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX"></script> 삽입 -->
+
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="logo" href="/">카<span>택스</span></a><nav class="main"><a href="/tax.html">자동차세</a><a href="/acquisition.html">취득세</a><a href="/fuel.html">유류비</a><a href="/loan.html">할부</a><a href="/running-cost.html">유지비</a><a href="/depreciation.html">감가</a></nav></div></header>
+<main><div class="wrap">
+<h1>자동차세 계산기 (2026)</h1>
+<p class="lead">배기량과 차령을 넣으면 연간 자동차세와 1월 연납 시 할인 금액을 계산합니다.</p>
+<div class="card"><form class="calc" id="f" onsubmit="return false">
+<div class="row">
+<div class="field"><label>연료 종류</label><select name="fuel" id="fuel"><option value="ice">휘발유·경유·LPG·하이브리드</option><option value="ev">전기·수소차</option></select></div>
+<div class="field" id="ccWrap"><label>배기량 <small>(cc)</small></label><input name="cc" id="cc" data-comma placeholder="예: 1,999"></div>
+</div>
+<div class="chips"><button type="button" data-v="998">경차 998cc</button><button type="button" data-v="1598">준중형 1598cc</button><button type="button" data-v="1999">중형 1999cc</button><button type="button" data-v="2497">대형 2497cc</button><button type="button" data-v="3342">3342cc</button></div>
+<div class="field"><label>차령 <small>(최초 등록 후 몇 년째인지. 신차는 1. 전기·수소차는 경감 대상이 아니라 결과가 같습니다)</small></label><input name="age" id="age" type="number" min="1" max="30" value="1"></div>
+<div class="inline"><button class="btn" id="go">계산하기</button><button class="btn ghost" type="button" onclick="shareLink()">결과 링크 복사</button></div>
+</form>
+<div class="result" id="res" hidden>
+<div>연간 자동차세 <span class="big" id="out"></span></div>
+<div class="tbl-wrap"><table><tbody id="tb"></tbody></table></div>
+<p class="note">비영업용 승용차 기준입니다. 승합·화물차와 영업용 차량은 별도 세율이 적용됩니다.</p>
+</div></div>
+<div class="ad-slot">광고 영역 (승인 후 삽입)</div>
+<section class="card prose">
+<h2>자동차세는 어떻게 계산되나요?</h2>
+<p>비영업용 승용차의 자동차세는 <b>배기량 × cc당 세액</b>으로 본세를 구하고, 여기에 <b>지방교육세 30%</b>를 더합니다. cc당 세액은 1,000cc 이하 80원, 1,600cc 이하 140원, 1,600cc 초과 200원입니다. 배기량이 1cc라도 구간을 넘으면 전체에 높은 세율이 적용되므로, 1,600cc와 1,601cc는 세금 차이가 큽니다.</p>
+<p>예를 들어 2,000cc 중형차는 2,000 × 200 = 40만 원이 본세이고, 지방교육세 12만 원을 더해 연 52만 원입니다. 전기차와 수소차는 배기량이 없어 본세 10만 원 정액이 부과되며, 교육세를 더해 연 13만 원으로 고정됩니다.</p>
+<h2>차령 경감</h2>
+<p>차가 오래될수록 세금이 줄어듭니다. 등록 후 <b>3년차부터 매년 5%씩</b> 본세가 경감되고, <b>12년차 이상은 최대 50%</b>까지 깎입니다. 지방교육세는 경감된 본세를 기준으로 다시 계산되므로 총액이 함께 줄어듭니다. 단, <b>전기·수소차의 정액분과 영업용 차량에는 차령 경감이 적용되지 않습니다.</b> 전기차는 몇 년을 타도 연 13만 원 그대로입니다.</p>
+<div class="tbl-wrap"><table id="ageTbl"><thead><tr><th>차령</th><th class="num">경감률</th><th class="num">2,000cc 기준 연세액</th></tr></thead><tbody></tbody></table></div>
+<h2>1월 연납 할인</h2>
+<p>자동차세는 원래 6월과 12월에 나눠 냅니다. 1월에 1년치를 한 번에 미리 내면 <b>연세액의 약 4.58%</b>를 공제받습니다. 예전에는 10%였지만 금리 상황에 따라 공제율이 계속 낮아졌습니다. 신청은 보통 1월 16일부터 말일까지 위택스(wetax.go.kr)나 관할 구청에서 할 수 있고, 3월·6월·9월에도 신청할 수 있지만 남은 기간만큼만 공제되어 할인 폭이 줄어듭니다.</p>
+<h2>자주 묻는 질문</h2>
+<div class="faq">
+<details><summary>연중에 차를 사거나 팔면 어떻게 되나요?</summary><p>소유한 날수만큼 일할 계산됩니다. 6월 15일에 팔았다면 그날까지의 세금만 부담합니다. 연납한 뒤 차를 팔면 남은 기간분은 환급됩니다.</p></details>
+<details><summary>하이브리드는 세금이 적나요?</summary><p>하이브리드는 배기량이 있으므로 일반 내연기관차와 같은 방식으로 계산됩니다. 자동차세 자체의 할인은 없고, 취득세 감면 혜택이 따로 있습니다.</p></details>
+<details><summary>자동차세를 안 내면?</summary><p>납부 기한이 지나면 3%의 가산금이 붙고, 체납이 계속되면 번호판 영치와 차량 압류가 진행될 수 있습니다.</p></details>
+<details><summary>차령은 어떻게 세나요?</summary><p>최초 등록일이 속한 해가 1년차입니다. 2024년에 등록한 차는 2026년에 3년차가 되어 첫 경감(5%)을 받습니다.</p></details>
+</div>
+</section>
+<script>
+(function(){const f=document.getElementById('f');loadState(f);
+function sync(){document.getElementById('ccWrap').style.display=f.fuel.value==='ev'?'none':'';}
+f.fuel.onchange=()=>{sync();run();};sync();
+document.querySelectorAll('.chips button').forEach(b=>b.onclick=()=>{f.fuel.value='ice';sync();document.getElementById('cc').value=Number(b.dataset.v).toLocaleString('ko-KR');run();});
+function run(){const isEv=f.fuel.value==='ev';const cc=num(f.cc);if(!isEv&&!cc)return;const age=Number(f.age.value)||1;const t=carTax(cc,age,isEv);
+document.getElementById('out').textContent=won(t.total);
+document.getElementById('tb').innerHTML=`<tr><td>자동차세 본세</td><td class="num">${won(t.base)}</td></tr><tr><td>차령 경감 (${age}년차)</td><td class="num">-${(t.relief*100).toFixed(0)}% (${won(t.base-t.taxed)})</td></tr><tr><td>경감 후 본세</td><td class="num">${won(t.taxed)}</td></tr><tr><td>지방교육세 (30%)</td><td class="num">${won(t.edu)}</td></tr><tr class="total"><td>연간 합계</td><td class="num">${won(t.total)}</td></tr><tr><td>1월 연납 시 (4.58% 공제)</td><td class="num">${won(t.prepay)} (${won(t.total-t.prepay)} 절약)</td></tr>`;
+document.getElementById('res').hidden=false;saveState(f);}
+document.getElementById('go').onclick=run;f.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();run();}});
+const tb=document.querySelector('#ageTbl tbody');[1,3,5,7,9,12,15].forEach(a=>{const t=carTax(2000,a,false);tb.insertAdjacentHTML('beforeend',`<tr><td>${a}년차</td><td class="num">${(t.relief*100).toFixed(0)}%</td><td class="num">${won(t.total)}</td></tr>`);});
+if(num(f.cc)||f.fuel.value==='ev')run();})();
+</script>
+</div></main>
+<footer><div class="wrap"><div style="margin-bottom:8px"><a href="/tax.html">자동차세</a><a href="/acquisition.html">취득세</a><a href="/fuel.html">유류비</a><a href="/loan.html">할부 이자</a><a href="/running-cost.html">유지비</a><a href="/depreciation.html">중고차 감가</a></div><div><a href="/about.html">소개</a><a href="/privacy.html">개인정보처리방침</a><a href="/contact.html">문의</a></div><div style="margin-top:8px">© 2026 카택스. 모든 계산 결과는 참고용 추정치이며, 실제 세액은 지방자치단체의 부과 기준에 따라 달라질 수 있습니다.</div></div></footer>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>중고차 감가 계산기 — 연식별 잔존가치와 연평균 감가액 | 카택스</title>
+<meta name="description" content="신차 가격과 보유 기간으로 중고차 잔존가치를 추정합니다. 차종별 감가율 조정 가능, 연평균 감가액과 잔존율 표시.">
+<link rel="canonical" href="https://YOUR-DOMAIN.com/depreciation.html">
+<meta property="og:title" content="중고차 감가 계산기 — 연식별 잔존가치와 연평균 감가액">
+<meta property="og:description" content="신차 가격과 보유 기간으로 중고차 잔존가치를 추정합니다. 차종별 감가율 조정 가능, 연평균 감가액과 잔존율 표시.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="/assets/shared/base.css">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/rates.js"></script><script src="/assets/shared/common.js"></script><script src="/assets/calc.js"></script>
+<!-- 애드센스 승인 후 여기에 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX"></script> 삽입 -->
+
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="logo" href="/">카<span>택스</span></a><nav class="main"><a href="/tax.html">자동차세</a><a href="/acquisition.html">취득세</a><a href="/fuel.html">유류비</a><a href="/loan.html">할부</a><a href="/running-cost.html">유지비</a><a href="/depreciation.html">감가</a></nav></div></header>
+<main><div class="wrap">
+<h1>중고차 감가 계산기</h1>
+<p class="lead">신차 가격과 연식을 넣으면 예상 잔존가치와 연평균 감가액을 계산합니다. 감가율은 직접 조정할 수 있습니다.</p>
+<div class="card"><form class="calc" id="f" onsubmit="return false">
+<div class="row">
+<div class="field"><label>신차 가격 <small>(원)</small></label><input name="price" id="price" data-comma value="35,000,000"></div>
+<div class="field"><label>보유 기간 <small>(년)</small></label><input name="years" id="years" type="number" min="1" max="15" value="5"></div>
+</div>
+<div class="row">
+<div class="field"><label>첫해 감가율 <small>(%)</small></label><input name="first" id="first" type="number" step="1" min="0" max="60" value="20"></div>
+<div class="field"><label>이후 연 감가율 <small>(%)</small></label><input name="per" id="per" type="number" step="1" min="0" max="40" value="10"></div>
+</div>
+<div class="inline"><button class="btn" id="go">계산하기</button><button class="btn ghost" type="button" onclick="shareLink()">결과 링크 복사</button></div>
+</form>
+<div class="result" id="res" hidden>
+<div>예상 잔존가치 <span class="big" id="out"></span></div>
+<div class="tbl-wrap"><table id="tbl"><thead><tr><th>연식</th><th class="num">잔존가치</th><th class="num">누적 감가</th><th class="num">그해 감가액</th></tr></thead><tbody></tbody></table></div>
+<p class="note">감가율은 차종·브랜드·주행거리·사고 이력에 따라 크게 달라집니다. 이 계산기는 일반적인 국산 승용차의 경향을 바탕으로 한 <b>추정 모델</b>이며 실제 시세가 아닙니다. 정확한 시세는 엔카·KB차차차 등에서 동일 조건 매물을 확인하세요.</p>
+</div></div>
+<div class="ad-slot">광고 영역 (승인 후 삽입)</div>
+<section class="card prose">
+<h2>왜 첫해에 가장 많이 떨어지나요?</h2>
+<p>차량은 등록되는 순간 "중고차"가 됩니다. 신차 등록만으로 10~15%가 빠지고, 첫해가 지나면 보통 20% 안팎이 사라집니다. 이후에는 매년 8~12% 정도씩 완만하게 떨어지다가, 10년이 넘으면 감가 폭이 줄어들고 잔존가치가 일정 수준에서 유지됩니다.</p>
+<p>이 계산기의 기본값(첫해 20%, 이후 연 10%)은 국산 중형 세단의 일반적인 경향입니다. 아래 요인에 따라 조정해서 쓰세요.</p>
+<div class="tbl-wrap"><table><thead><tr><th>조건</th><th>감가율 조정</th></tr></thead><tbody>
+<tr><td>인기 SUV, 하이브리드</td><td>연 감가율을 7~8%로 낮춤</td></tr>
+<tr><td>수입차 (독일 브랜드 제외 다수)</td><td>첫해 25~30%, 연 12~15%로 높임</td></tr>
+<tr><td>전기차</td><td>배터리 보증 잔여 기간에 따라 편차 큼. 연 15% 이상도 흔함</td></tr>
+<tr><td>연 2만 km 이상 주행</td><td>연 감가율 +2~3%p</td></tr>
+<tr><td>사고 이력 있음</td><td>단순 교환 -5%, 주요 골격 수리 -20% 이상</td></tr>
+</tbody></table></div>
+<h2>감가는 유지비보다 큰 비용입니다</h2>
+<p>3,500만 원짜리 차를 5년 타고 팔면 대략 1,800만 원이 사라집니다. 연평균 360만 원, 월 30만 원입니다. <a href="/running-cost.html">1년 유지비 계산기</a>로 구한 세금·보험·기름값 합계와 비슷하거나 더 큰 금액입니다. 차를 고를 때 유지비만 따지고 감가를 빼놓으면 실제 비용의 절반을 놓치는 셈입니다.</p>
+<h2>자주 묻는 질문</h2>
+<div class="faq">
+<details><summary>감가를 줄이려면 어떻게 해야 하나요?</summary><p>인기 차종·인기 색상(흰색·검정)을 고르고, 무사고를 유지하고, 정비 기록을 남기고, 주행거리를 연 1만 5천 km 이내로 관리하면 중고 시세 방어에 도움이 됩니다.</p></details>
+<details><summary>몇 년 타고 파는 게 가장 이득인가요?</summary><p>감가만 보면 첫해 손실이 가장 크므로 오래 탈수록 연평균 감가는 줄어듭니다. 다만 7년이 넘으면 정비비가 늘어나므로, 감가와 정비비를 합친 총 비용은 대체로 5~8년 구간에서 가장 낮습니다.</p></details>
+<details><summary>리스·장기렌트와 비교하면?</summary><p>리스료에는 감가와 이자, 세금이 이미 포함되어 있습니다. 이 계산기의 연평균 감가액에 <a href="/loan.html">할부 이자</a>와 <a href="/tax.html">자동차세</a>를 더한 금액이 리스료보다 높다면 리스가 유리할 수 있습니다.</p></details>
+</div>
+</section>
+<script>
+(function(){const f=document.getElementById('f');loadState(f);
+function run(){const P=num(f.price),y=Number(f.years.value)||1,fy=Number(f.first.value)||0,pe=Number(f.per.value)||0;if(!P)return;
+const v=residual(P,y,fy,pe);
+document.getElementById('out').textContent=won(v);
+let rows='',prev=P;for(let i=1;i<=y;i++){const cur=residual(P,i,fy,pe);rows+=`<tr${i===y?' class="total"':''}><td>${i}년차</td><td class="num">${fmt(cur)}</td><td class="num">${fmt(P-cur)}</td><td class="num">${fmt(prev-cur)}</td></tr>`;prev=cur;}
+rows+=`<tr><td colspan="4" style="color:var(--muted);font-size:13px">연평균 감가 ${won((P-v)/y)} · 월 환산 ${won((P-v)/y/12)} · ${y}년 후 잔존율 ${(v/P*100).toFixed(0)}%</td></tr>`;
+document.querySelector('#tbl tbody').innerHTML=rows;
+document.getElementById('res').hidden=false;saveState(f);}
+document.getElementById('go').onclick=run;f.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();run();}});run();})();
+</script>
+</div></main>
+<footer><div class="wrap"><div style="margin-bottom:8px"><a href="/tax.html">자동차세</a><a href="/acquisition.html">취득세</a><a href="/fuel.html">유류비</a><a href="/loan.html">할부 이자</a><a href="/running-cost.html">유지비</a><a href="/depreciation.html">중고차 감가</a></div><div><a href="/about.html">소개</a><a href="/privacy.html">개인정보처리방침</a><a href="/contact.html">문의</a></div><div style="margin-top:8px">© 2026 카택스. 모든 계산 결과는 참고용 추정치이며, 실제 세액은 지방자치단체의 부과 기준에 따라 달라질 수 있습니다.</div></div></footer>
+</body>
+</html>
