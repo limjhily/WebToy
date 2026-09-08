@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4대보험 계산기 2026 — 국민연금·건강·고용보험 근로자·사업주 부담액 | 월급계산소</title>
+<meta name="description" content="2026년 요율(국민연금 9.5%, 건강보험 7.19%)로 월급 기준 4대보험료를 계산합니다. 요율표와 상한액 설명 포함.">
+<link rel="canonical" href="https://YOUR-DOMAIN.com/insurance.html">
+<meta property="og:title" content="4대보험 계산기 2026 — 국민연금·건강·고용보험 근로자·사업주 부담액">
+<meta property="og:description" content="2026년 요율(국민연금 9.5%, 건강보험 7.19%)로 월급 기준 4대보험료를 계산합니다. 요율표와 상한액 설명 포함.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="/assets/style.css">
+<!-- 애드센스 승인 후 여기에 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX"></script> 삽입 -->
+
+<script src="/assets/rates.js"></script><script src="/assets/common.js"></script><script src="/assets/calc.js"></script>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="logo" href="/">월급<span>계산소</span></a><nav class="main"><a href="/salary.html">연봉 실수령액</a><a href="/insurance.html">4대보험</a><a href="/severance.html">퇴직금</a><a href="/unemployment.html">실업급여</a><a href="/hourly.html">시급·주휴수당</a><a href="/annual-leave.html">연차</a></nav></div></header>
+<main><div class="wrap">
+<h1>4대보험 계산기 (2026)</h1>
+<p class="lead">월급을 넣으면 국민연금·건강보험·장기요양보험·고용보험의 근로자 부담액과 사업주 부담액을 계산합니다.</p>
+<div class="card"><form class="calc" id="f" onsubmit="return false">
+<div class="row">
+<div class="field"><label>월 급여 <small>(세전, 비과세 제외)</small></label><input name="amt" id="amt" data-comma placeholder="예: 3,000,000"></div>
+<div class="field"><label>사업장 규모 <small>(고용안정·직업능력개발 요율)</small></label><select name="size" id="size"><option value="0.0025">150인 미만 (0.25%)</option><option value="0.0045">150인 이상 우선지원대상 (0.45%)</option><option value="0.0065">150~1,000인 (0.65%)</option><option value="0.0085">1,000인 이상 (0.85%)</option></select></div>
+</div>
+<div class="inline"><button class="btn" id="go">계산하기</button><button class="btn ghost" type="button" onclick="shareLink()">결과 링크 복사</button></div>
+</form>
+<div class="result" id="res" hidden>
+<div>근로자 부담 합계 <span class="big" id="tot"></span></div>
+<div class="tbl-wrap"><table><thead><tr><th>보험</th><th class="num">요율(근로자)</th><th class="num">근로자 부담</th><th class="num">사업주 부담</th></tr></thead><tbody id="tb"></tbody></table></div>
+<p class="note">산재보험은 전액 사업주 부담이며 업종별 요율(평균 1.47%)이 달라 표에서 제외했습니다. 보험료는 10원 미만 절사.</p>
+</div></div>
+<div class="ad-slot">광고 영역 (승인 후 삽입)</div>
+<section class="card prose">
+<h2>2026년 4대보험 요율표</h2>
+<div class="tbl-wrap"><table><thead><tr><th>구분</th><th class="num">전체</th><th class="num">근로자</th><th class="num">사업주</th></tr></thead><tbody>
+<tr><td>국민연금</td><td class="num">9.5%</td><td class="num">4.75%</td><td class="num">4.75%</td></tr>
+<tr><td>건강보험</td><td class="num">7.19%</td><td class="num">3.595%</td><td class="num">3.595%</td></tr>
+<tr><td>장기요양보험</td><td class="num" colspan="3">건강보험료의 13.14% (절반씩)</td></tr>
+<tr><td>고용보험(실업급여)</td><td class="num">1.8%</td><td class="num">0.9%</td><td class="num">0.9%</td></tr>
+<tr><td>고용안정·직업능력개발</td><td class="num">0.25~0.85%</td><td class="num">-</td><td class="num">규모별</td></tr>
+<tr><td>산재보험</td><td class="num">업종별</td><td class="num">-</td><td class="num">전액</td></tr>
+</tbody></table></div>
+<p>국민연금은 <b>기준소득월액</b>(41만~659만 원, 2026.7~2027.6)을 기준으로 부과되어 월급이 659만 원을 넘어도 보험료가 더 오르지 않습니다. 건강보험과 고용보험은 상한이 매우 높아 사실상 월급에 비례합니다. 2026년은 연금개혁 첫해로 국민연금 요율이 9%에서 9.5%로 올랐고, 2033년까지 매년 0.5%p씩 올라 13%가 됩니다.</p>
+<h2>자주 묻는 질문</h2>
+<div class="faq">
+<details><summary>4대보험 가입 의무는 누구에게 있나요?</summary><p>월 60시간 이상(주 15시간 이상) 일하는 근로자는 1인 사업장이라도 4대보험 가입이 의무입니다. 초단시간 근로자는 산재보험만 적용됩니다.</p></details>
+<details><summary>건강보험료는 매년 4월에 왜 더 나가나요?</summary><p>전년도 실제 소득이 확정되면 4월 급여에서 정산합니다. 작년에 급여가 올랐다면 추가 납부, 줄었다면 환급됩니다.</p></details>
+<details><summary>보험료가 얼마 이상이면 소득공제가 되나요?</summary><p>근로자가 낸 국민연금·건강·고용보험료 전액이 연말정산에서 소득공제됩니다. 별도 한도가 없습니다.</p></details>
+</div>
+</section>
+<script>
+(function(){const f=document.getElementById('f');loadState(f);
+function run(){const m=num(f.amt);if(!m)return;const i=insurance(m);const emp=[i.pension,i.health,i.longCare,i.employment];const own=[i.pension,i.health,i.longCare,Math.floor(m*(0.009+Number(f.size.value))/10)*10];
+const names=['국민연금','건강보험','장기요양보험','고용보험'],rates=['4.75%','3.595%','건보료×13.14%','0.9%'];
+document.getElementById('tb').innerHTML=names.map((n,k)=>`<tr><td>${n}</td><td class="num">${rates[k]}</td><td class="num">${fmt(emp[k])}</td><td class="num">${fmt(own[k])}</td></tr>`).join('')+`<tr class="total"><td>합계</td><td></td><td class="num">${fmt(i.total)}</td><td class="num">${fmt(own.reduce((a,b)=>a+b))}</td></tr>`;
+document.getElementById('tot').textContent=won(i.total);document.getElementById('res').hidden=false;saveState(f);}
+document.getElementById('go').onclick=run;f.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();run();}});if(num(f.amt))run();})();
+</script>
+</div></main>
+<footer><div class="wrap"><div style="margin-bottom:8px"><a href="/salary.html">연봉 실수령액</a><a href="/insurance.html">4대보험</a><a href="/severance.html">퇴직금</a><a href="/unemployment.html">실업급여</a><a href="/hourly.html">시급·주휴수당</a><a href="/annual-leave.html">연차</a></div><div><a href="/about.html">소개</a><a href="/privacy.html">개인정보처리방침</a><a href="/contact.html">문의</a></div><div style="margin-top:8px">© 2026 월급계산소. 모든 계산 결과는 참고용 추정치이며, 실제 금액은 회사·기관의 산정 기준에 따라 달라질 수 있습니다.</div></div></footer>
+</body>
+</html>

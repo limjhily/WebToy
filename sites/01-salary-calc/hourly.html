@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>시급·주휴수당 계산기 2026 — 최저임금 10,320원 월급 환산 | 월급계산소</title>
+<meta name="description" content="시급과 근무시간으로 주휴수당 포함 주급·월급을 계산합니다. 2026년 최저임금 위반 확인, 주휴수당 조건과 가산수당 FAQ.">
+<link rel="canonical" href="https://YOUR-DOMAIN.com/hourly.html">
+<meta property="og:title" content="시급·주휴수당 계산기 2026 — 최저임금 10,320원 월급 환산">
+<meta property="og:description" content="시급과 근무시간으로 주휴수당 포함 주급·월급을 계산합니다. 2026년 최저임금 위반 확인, 주휴수당 조건과 가산수당 FAQ.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="/assets/style.css">
+<!-- 애드센스 승인 후 여기에 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX"></script> 삽입 -->
+
+<script src="/assets/rates.js"></script><script src="/assets/common.js"></script><script src="/assets/calc.js"></script>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="logo" href="/">월급<span>계산소</span></a><nav class="main"><a href="/salary.html">연봉 실수령액</a><a href="/insurance.html">4대보험</a><a href="/severance.html">퇴직금</a><a href="/unemployment.html">실업급여</a><a href="/hourly.html">시급·주휴수당</a><a href="/annual-leave.html">연차</a></nav></div></header>
+<main><div class="wrap">
+<h1>시급·주휴수당·월급 계산기 (2026)</h1>
+<p class="lead">시급과 근무시간을 넣으면 주휴수당을 포함한 주급·월급을 계산하고, 2026년 최저임금(10,320원) 위반 여부를 확인합니다.</p>
+<div class="card"><form class="calc" id="f" onsubmit="return false">
+<div class="row">
+<div class="field"><label>시급 <small>(원)</small></label><input name="wage" id="wage" data-comma value="10,320"></div>
+<div class="field"><label>1일 근무시간 <small>(휴게시간 제외)</small></label><input name="hours" id="hours" type="number" step="0.5" min="0" max="24" value="8"></div>
+</div>
+<div class="row">
+<div class="field"><label>주 근무일수</label><input name="days" id="days" type="number" min="1" max="7" value="5"></div>
+<div class="field"><label>월 환산 방식</label><select name="mode" id="mode"><option value="avg">평균 4.345주 (법정 방식)</option><option value="4">4주</option></select></div>
+</div>
+<div class="inline"><button class="btn" id="go">계산하기</button><button class="btn ghost" type="button" onclick="shareLink()">결과 링크 복사</button></div>
+</form>
+<div class="result" id="res" hidden>
+<div>월 예상 급여 <span class="big" id="out"></span></div>
+<div class="tbl-wrap"><table><tbody id="tb"></tbody></table></div>
+<p class="note" id="warn"></p>
+</div></div>
+<div class="ad-slot">광고 영역 (승인 후 삽입)</div>
+<section class="card prose">
+<h2>주휴수당이란?</h2>
+<p>1주 소정근로시간이 <b>15시간 이상</b>이고 그 주를 개근했다면, 일하지 않는 유급휴일 하루치 임금을 추가로 받습니다. 주휴시간 = (1주 근로시간 ÷ 40) × 8시간이며 최대 8시간입니다. 주 40시간 근무자는 매주 8시간, 즉 2026년 최저시급 기준 82,560원의 주휴수당을 받습니다. 아르바이트·단시간 근로자도 조건만 맞으면 동일하게 적용되며, 시급에 주휴수당을 포함해 지급하는 "포괄 시급"은 최저임금(10,320원) 이상이 보장돼야 합니다.</p>
+<p>월급 환산은 1년 = 52.14주이므로 <b>주급 × 4.345</b>로 계산하는 것이 법정 방식입니다. 주 40시간 최저임금 월급 2,156,880원이 이 방식으로 나온 숫자입니다.</p>
+<h2>자주 묻는 질문</h2>
+<div class="faq">
+<details><summary>주 14시간 일하면 주휴수당이 없나요?</summary><p>없습니다. 15시간 미만 초단시간 근로자는 주휴수당·연차·퇴직금이 적용되지 않습니다. 사업주가 이를 피하려 14.5시간 계약을 하는 경우가 많습니다.</p></details>
+<details><summary>야간·연장·휴일 근무는?</summary><p>5인 이상 사업장은 연장(1일 8시간 초과)·야간(22시~06시)·휴일 근무에 통상시급의 50%를 가산합니다. 이 계산기는 기본 근무만 계산하니 가산수당은 따로 더하세요.</p></details>
+<details><summary>수습 기간 감액은?</summary><p>1년 이상 계약 근로자는 첫 3개월 동안 최저임금의 90%(9,288원)까지 감액할 수 있습니다. 1년 미만 계약이나 단순노무직은 감액이 불가능합니다.</p></details>
+</div>
+</section>
+<script>
+(function(){const f=document.getElementById('f');loadState(f);
+function run(){const w=num(f.wage),h=Number(f.hours.value)||0,d=Number(f.days.value)||0;if(!w||!h||!d)return;const weekly=h*d;const hol=weekly>=15?Math.min(weekly,40)/40*8:0;const weekPay=w*(weekly+hol);const weeks=f.mode.value==="avg"?365/7/12:4;const mh=Math.round((weekly+hol)*weeks);const month=w*mh;
+document.getElementById('out').textContent=won(month);
+document.getElementById('tb').innerHTML=`<tr><td>주 근로시간</td><td class="num">${weekly}시간</td></tr><tr><td>주휴시간</td><td class="num">${hol.toFixed(1)}시간</td></tr><tr><td>주휴수당</td><td class="num">${won(w*hol)}</td></tr><tr><td>주급 (주휴 포함)</td><td class="num">${won(weekPay)}</td></tr><tr><td>월 총 근로시간 (주휴 포함)</td><td class="num">${mh}시간</td></tr><tr><td>일급</td><td class="num">${won(w*h)}</td></tr>`;
+document.getElementById('warn').textContent=w<RATES.minWage?`⚠ 시급 ${won(w)}은 2026년 최저임금 ${won(RATES.minWage)}보다 낮습니다.`:hol?'주휴수당은 해당 주를 개근한 경우에만 발생합니다.':'주 15시간 미만이라 주휴수당이 발생하지 않습니다.';
+document.getElementById('res').hidden=false;saveState(f);}
+document.getElementById('go').onclick=run;f.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();run();}});run();})();
+</script>
+</div></main>
+<footer><div class="wrap"><div style="margin-bottom:8px"><a href="/salary.html">연봉 실수령액</a><a href="/insurance.html">4대보험</a><a href="/severance.html">퇴직금</a><a href="/unemployment.html">실업급여</a><a href="/hourly.html">시급·주휴수당</a><a href="/annual-leave.html">연차</a></div><div><a href="/about.html">소개</a><a href="/privacy.html">개인정보처리방침</a><a href="/contact.html">문의</a></div><div style="margin-top:8px">© 2026 월급계산소. 모든 계산 결과는 참고용 추정치이며, 실제 금액은 회사·기관의 산정 기준에 따라 달라질 수 있습니다.</div></div></footer>
+</body>
+</html>

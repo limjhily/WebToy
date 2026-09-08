@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>연봉 실수령액 계산기 2026 — 4대보험·소득세 공제 후 월급 | 월급계산소</title>
+<meta name="description" content="2026년 4대보험 요율과 소득세율로 연봉·월급 실수령액을 계산합니다. 연봉별 실수령액 표와 계산 방식 설명 포함.">
+<link rel="canonical" href="https://YOUR-DOMAIN.com/salary.html">
+<meta property="og:title" content="연봉 실수령액 계산기 2026 — 4대보험·소득세 공제 후 월급">
+<meta property="og:description" content="2026년 4대보험 요율과 소득세율로 연봉·월급 실수령액을 계산합니다. 연봉별 실수령액 표와 계산 방식 설명 포함.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="/assets/style.css">
+<!-- 애드센스 승인 후 여기에 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX"></script> 삽입 -->
+
+<script src="/assets/rates.js"></script><script src="/assets/common.js"></script><script src="/assets/calc.js"></script>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="logo" href="/">월급<span>계산소</span></a><nav class="main"><a href="/salary.html">연봉 실수령액</a><a href="/insurance.html">4대보험</a><a href="/severance.html">퇴직금</a><a href="/unemployment.html">실업급여</a><a href="/hourly.html">시급·주휴수당</a><a href="/annual-leave.html">연차</a></nav></div></header>
+<main><div class="wrap">
+<h1>연봉 실수령액 계산기 (2026)</h1>
+<p class="lead">연봉 또는 월급을 넣으면 4대보험과 소득세·지방소득세를 뺀 월 실수령액을 계산합니다.</p>
+<div class="card"><form class="calc" id="f" onsubmit="return false">
+<div class="row">
+<div class="field"><label>급여 유형</label><select name="type" id="type"><option value="y">연봉</option><option value="m">월급</option></select></div>
+<div class="field"><label>금액 <small>(세전, 원)</small></label><input name="amt" id="amt" data-comma placeholder="예: 42,000,000"></div>
+</div>
+<div class="chips"><button type="button" data-v="30000000">3,000만</button><button type="button" data-v="40000000">4,000만</button><button type="button" data-v="50000000">5,000만</button><button type="button" data-v="60000000">6,000만</button><button type="button" data-v="80000000">8,000만</button><button type="button" data-v="100000000">1억</button></div>
+<div class="row">
+<div class="field"><label>월 비과세액 <small>(식대 등, 최대 20만 원이 일반적)</small></label><input name="nontax" id="nontax" data-comma value="200,000"></div>
+<div class="field"><label>부양가족 수 <small>(본인 포함)</small></label><input name="family" id="family" type="number" min="1" max="20" value="1"></div>
+</div>
+<div class="inline"><button class="btn" id="go">계산하기</button><button class="btn ghost" type="button" onclick="shareLink()">결과 링크 복사</button></div>
+</form>
+<div class="result" id="res" hidden>
+<div>월 실수령액 <span class="big" id="net"></span></div>
+<div class="tbl-wrap"><table><thead><tr><th>항목</th><th class="num">월 금액</th><th class="num">연 금액</th></tr></thead><tbody id="tb"></tbody></table></div>
+<p class="note">국세청 간이세액표(100% 기준)와 수천 원 이내 차이가 날 수 있는 추정치입니다. 연말정산 결과에 따라 최종 세액은 달라집니다.</p>
+</div></div>
+<div class="ad-slot">광고 영역 (승인 후 삽입)</div>
+<section class="card prose">
+<h2>실수령액은 어떻게 계산하나요?</h2>
+<p>세전 월급에서 ① 국민연금(4.75%) ② 건강보험(3.595%) ③ 장기요양보험(건강보험료의 13.14%) ④ 고용보험(0.9%) ⑤ 근로소득세 ⑥ 지방소득세(소득세의 10%)를 뺀 금액이 통장에 들어오는 실수령액입니다. 비과세 항목(식대 월 20만 원, 자가운전보조금 월 20만 원 등)은 보험료·세금 계산에서 제외되므로 같은 연봉이라도 비과세가 많으면 실수령액이 늘어납니다.</p>
+<p>근로소득세는 국세청 <b>간이세액표</b>로 매달 원천징수합니다. 간이세액표는 총급여에서 근로소득공제·인적공제·보험료공제를 빼 과세표준을 구하고, 6~45% 기본세율을 적용한 뒤 근로소득세액공제를 차감해 12로 나눈 값에 가깝습니다. 이 계산기는 같은 방식으로 추정하며, 부양가족이 많을수록 세금이 줄어듭니다.</p>
+<h2>2026년 연봉별 실수령액 참고표 <small>(비과세 20만 원, 부양가족 1인)</small></h2>
+<div class="tbl-wrap"><table id="ref"><thead><tr><th>연봉</th><th class="num">월 실수령액</th><th class="num">월 공제 합계</th></tr></thead><tbody></tbody></table></div>
+<h2>자주 묻는 질문</h2>
+<div class="faq">
+<details><summary>연봉에 퇴직금이 포함되어 있다면?</summary><p>"퇴직금 포함 연봉"이면 연봉을 13으로 나눈 값이 실제 월급입니다. 이 경우 연봉 × 12/13 을 연봉 칸에 넣으세요.</p></details>
+<details><summary>국민연금은 왜 월급이 올라도 어느 선에서 멈추나요?</summary><p>국민연금은 기준소득월액 상한(2026.7~ 659만 원)까지만 부과됩니다. 월급이 659만 원을 넘으면 보험료는 313,020원(4.75%)으로 고정됩니다.</p></details>
+<details><summary>회사가 떼는 금액과 다른데요?</summary><p>회사마다 비과세 항목, 간이세액표 선택 비율(80·100·120%), 상여금 지급 방식이 달라 차이가 납니다. 급여명세서의 비과세액을 "월 비과세액"에 넣으면 더 가까워집니다.</p></details>
+</div>
+</section>
+<script>
+(function(){
+const f=document.getElementById('f');loadState(f);
+document.querySelectorAll('.chips button').forEach(b=>b.onclick=()=>{document.getElementById('type').value='y';document.getElementById('amt').value=Number(b.dataset.v).toLocaleString('ko-KR');run();});
+function run(){const type=f.type.value,amt=num(f.amt);if(!amt)return;const annual=type==='y'?amt:amt*12;const r=netSalary(annual,num(f.nontax),Number(f.family.value)||1);
+document.getElementById('net').textContent=won(r.net);
+const rows=[['세전 월급',r.gross],['국민연금',-r.ins.pension],['건강보험',-r.ins.health],['장기요양보험',-r.ins.longCare],['고용보험',-r.ins.employment],['근로소득세',-r.tax],['지방소득세',-r.local]];
+document.getElementById('tb').innerHTML=rows.map(([k,v])=>`<tr><td>${k}</td><td class="num">${fmt(v)}</td><td class="num">${fmt(v*12)}</td></tr>`).join('')+`<tr class="total"><td>실수령액</td><td class="num">${fmt(r.net)}</td><td class="num">${fmt(r.net*12)}</td></tr>`;
+document.getElementById('res').hidden=false;saveState(f);}
+document.getElementById('go').onclick=run;f.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();run();}});
+const tb=document.querySelector('#ref tbody');[24000000,30000000,36000000,42000000,48000000,54000000,60000000,70000000,80000000,100000000,120000000,150000000].forEach(a=>{const r=netSalary(a,200000,1);tb.insertAdjacentHTML('beforeend',`<tr><td>${fmt(a/10000)}만 원</td><td class="num">${won(r.net)}</td><td class="num">${won(r.gross-r.net)}</td></tr>`);});
+if(num(f.amt))run();
+})();
+</script>
+</div></main>
+<footer><div class="wrap"><div style="margin-bottom:8px"><a href="/salary.html">연봉 실수령액</a><a href="/insurance.html">4대보험</a><a href="/severance.html">퇴직금</a><a href="/unemployment.html">실업급여</a><a href="/hourly.html">시급·주휴수당</a><a href="/annual-leave.html">연차</a></div><div><a href="/about.html">소개</a><a href="/privacy.html">개인정보처리방침</a><a href="/contact.html">문의</a></div><div style="margin-top:8px">© 2026 월급계산소. 모든 계산 결과는 참고용 추정치이며, 실제 금액은 회사·기관의 산정 기준에 따라 달라질 수 있습니다.</div></div></footer>
+</body>
+</html>
